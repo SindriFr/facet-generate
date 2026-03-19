@@ -104,6 +104,22 @@ fn tuple_struct() {
 }
 
 #[test]
+fn struct_with_uuid_field() {
+    #[derive(Facet)]
+    struct StructWithUuid {
+        uuid: uuid::Uuid,
+    }
+
+    let actual = emit!(StructWithUuid as Kotlin with Encoding::None).unwrap();
+    insta::assert_snapshot!(actual, @"
+
+    data class StructWithUuid(
+        val uuid: String,
+    )
+    ");
+}
+
+#[test]
 fn struct_with_fields_of_primitive_types() {
     /// line 1
     #[derive(Facet)]

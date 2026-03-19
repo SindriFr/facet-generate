@@ -28,7 +28,7 @@ chrono = "0.4.44"
 difficient = "0.1.0"
 anyhow.workspace = true
 expect-test.workspace = true
-facet = { workspace = true, features = ["chrono", "url", "bytes"] }
+facet = { workspace = true, features = ["chrono", "url", "bytes", "uuid"] }
 ignore = "0.4"
 insta = { version = "1.46.3", features = ["yaml", "json"] }
 maplit = "1.0.2"
@@ -36,6 +36,7 @@ strum = { version = "0.28.0", features = ["derive"] }
 tempfile = "3.27.0"
 url = "2.5.8"
 bytes = "1.11"
+uuid = "1.0"
 
 [features]
 default = ["generate"]
