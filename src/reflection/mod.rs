@@ -1629,6 +1629,9 @@ fn type_to_format(shape: &Shape) -> Result<Option<Format>, Error> {
         }),
         Type::User(UserType::Opaque) => match shape.type_identifier {
             "String" | "DateTime<Utc>" => Some(Format::Str),
+            // Opaque scalar types that can round-trip through a string (e.g. Uuid, Url) are
+            // represented as strings in generated code.
+            _ if shape.vtable.has_display() && shape.vtable.has_parse() => Some(Format::Str),
             _ => None,
         },
         _ => unimplemented!(
